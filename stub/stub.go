@@ -1,6 +1,7 @@
 package stub
 
 type Stubby struct {
+	Name        string   `json:"name"`
 	Description string   `json:"description"`
 	Request     Request  `json:"request"`
 	Response    Response `json:"response"`
