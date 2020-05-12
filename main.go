@@ -15,11 +15,9 @@ func main() {
 
 	a := e.Routes()
 	for _, r := range a {
-		logrus.Printf("------")
-		logrus.Printf("%#v", r.Name)
-		logrus.Printf("%#v", r.Path)
-		logrus.Printf("%#v", r.Method)
+		logrus.Printf("%s - %s", r.Method, r.Path)
 	}
+
 	e.Logger.Fatal(e.Start(":1323"))
 }
 

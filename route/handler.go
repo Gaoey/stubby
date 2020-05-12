@@ -19,18 +19,21 @@ func Controller(c echo.Context, v stub.Stubby) error {
 
 	var (
 		httpMethodHasRequest = c.Request().Method == http.MethodPost || c.Request().Method == http.MethodPut || c.Request().Method == http.MethodPatch
+		stub                 = stub.MapStub[v.Name]
+		request              = c.Request().Body
+		method               = c.Request().Method
 	)
 
-	stub := stub.MapStub[v.Name]
+	// transform io.Reader from request to byte
+	var bodyBytes []byte
+	if request != nil {
+		bodyBytes, _ = ioutil.ReadAll(request)
+	}
+
 	for _, s := range stub {
 		// validate method
-		if c.Request().Method != s.Request.Method {
+		if method != s.Request.Method {
 			continue
-		}
-
-		var bodyBytes []byte
-		if c.Request().Body != nil {
-			bodyBytes, _ = ioutil.ReadAll(c.Request().Body)
 		}
 
 		logrus.Printf("doing %s ", s.Description)
@@ -39,9 +42,10 @@ func Controller(c echo.Context, v stub.Stubby) error {
 			status   = s.Response.Status
 			response = s.Response.Body
 		)
+
 		if httpMethodHasRequest {
 			// validate request
-			matchBody, err := regexp.MatchString(v.Request.Body, string(bodyBytes))
+			matchBody, err := regexp.MatchString(s.Request.Body, string(bodyBytes))
 			if err != nil {
 				continue
 			}
@@ -51,7 +55,9 @@ func Controller(c echo.Context, v stub.Stubby) error {
 			}
 		}
 
-		return c.String(status, response)
+		if !httpMethodHasRequest {
+			return c.String(status, response)
+		}
 	}
 
 	logrus.Printf("no stubby to define")
