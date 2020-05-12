@@ -36,8 +36,6 @@ func Controller(c echo.Context, v stub.Stubby) error {
 			continue
 		}
 
-		logrus.Printf("doing %s ", s.Description)
-
 		var (
 			status   = s.Response.Status
 			response = s.Response.Body
