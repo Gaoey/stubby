@@ -47,4 +47,24 @@ var CBPayStub = []Stubby{
 			Body: "<xml>Test happy </xml>",
 		},
 	},
+	Stubby{
+		ID:          GenerateID(),
+		Name:        CBPAY,
+		Description: "CBPAY Test 3",
+		Request: Request{
+			URL:    Routes[CBPAY],
+			Method: http.MethodPost,
+			Header: map[string]string{
+				echo.HeaderContentType: echo.MIMEApplicationXML,
+			},
+			Body: ".*error.*",
+		},
+		Response: Response{
+			Status: 408,
+			Header: map[string]string{
+				echo.HeaderContentType: echo.MIMEApplicationXML,
+			},
+			Body: "client time out",
+		},
+	},
 }
