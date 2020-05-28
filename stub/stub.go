@@ -1,11 +1,14 @@
 package stub
 
+import "github.com/labstack/echo"
+
 type Stubby struct {
 	ID          string
-	Name        string   `json:"name"`
-	Description string   `json:"description"`
-	Request     Request  `json:"request"`
-	Response    Response `json:"response"`
+	Name        string                    `json:"name"`
+	Description string                    `json:"description"`
+	Validate    func(c echo.Context) bool `json:"middleware"`
+	Request     Request                   `json:"request"`
+	Response    Response                  `json:"response"`
 }
 
 type Request struct {

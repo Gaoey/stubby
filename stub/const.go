@@ -1,16 +1,16 @@
 package stub
 
 var (
-	CBPAY = "CBPAY"
-	CBS   = "CBS"
+	ANYID   = "ANYID"
+	DEPOSIT = "DEPOSIT"
 )
 
 var Routes = map[string]string{
-	CBPAY: "/billpresentment-ws/BillPresentment",
-	CBS:   "/cbs",
+	ANYID:   "/anyid/AnyIDESBActualAcct/service",
+	DEPOSIT: "/deposit/v1/:id",
 }
 
 var MapStub = map[string][]Stubby{
-	CBPAY: CBPayStub,
-	CBS:   CBSStub,
+	ANYID:   AnyIdStub,
+	DEPOSIT: DepositStub,
 }
