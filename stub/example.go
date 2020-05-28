@@ -6,16 +6,16 @@ import (
 	"github.com/labstack/echo"
 )
 
-var DepositStub = []Stubby{
+var ExampleStub = []Stubby{
 	Stubby{
-		ID:          "deposit1",
-		Name:        DEPOSIT,
+		ID:          "example-1",
+		Name:        EXAMPLE,
 		Description: "DEPOSIT - Response Success",
 		Validate: func(c echo.Context) bool {
 			return true
 		},
 		Request: Request{
-			URL:    Routes[DEPOSIT],
+			URL:    Routes[EXAMPLE],
 			Method: http.MethodGet,
 			Body:   ".*",
 		},
@@ -28,14 +28,14 @@ var DepositStub = []Stubby{
 		},
 	},
 	Stubby{
-		ID:          "deposit2",
-		Name:        DEPOSIT,
+		ID:          "example-2",
+		Name:        EXAMPLE,
 		Description: "DEPOSIT - Response Error",
 		Validate: func(c echo.Context) bool {
 			return true
 		},
 		Request: Request{
-			URL:    Routes[DEPOSIT],
+			URL:    Routes[EXAMPLE],
 			Method: http.MethodGet,
 			Body:   ".*",
 		},

@@ -11,8 +11,7 @@ func New(scenarioId string, stubs []stub.Stubby) *Scenario {
 
 func initializeScenario(stubs []stub.Stubby) []*Scenario {
 	s1 := NewScenario("scenario1", "Test Case 1", "For Test 1", stubs)
-	s1.AddStep(stub.DEPOSIT, "cbpay1")
-	s1.AddStep(stub.DEPOSIT, "deposit2")
+	s1.AddStep(stub.EXAMPLE, "cbpay1")
 
 	return []*Scenario{s1}
 }
