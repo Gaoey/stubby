@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"strings"
 
@@ -20,11 +21,13 @@ func main() {
 	}
 
 	a := e.Routes()
+	fmt.Println("Provided path")
 	for _, r := range a {
 		logrus.Printf("%s - %s", r.Method, r.Path)
 	}
 
-	e.Logger.Fatal(e.Start(":9999"))
+	port := viper.GetString("app.port")
+	e.Logger.Fatal(e.Start(":" + port))
 }
 
 func Routing(e *echo.Echo, stubs []stub.Stubby) error {

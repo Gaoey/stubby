@@ -1,3 +1,6 @@
+app: 
+  name: "stubby"
+  port: "9999"
 env:
   scenario: false
 scenario-id: "scenario1"

@@ -10,7 +10,7 @@ var ExampleStub = []Stubby{
 	Stubby{
 		ID:          "example-1",
 		Name:        EXAMPLE,
-		Description: "DEPOSIT - Response Success",
+		Description: "Response Success",
 		Validate: func(c echo.Context) bool {
 			return true
 		},
