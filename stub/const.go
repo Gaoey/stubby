@@ -12,5 +12,5 @@ var Routes = map[string]string{
 
 var MapStub = map[string][]Stubby{
 	EXAMPLE:                         ExampleStub,
-	TESCO_CUSTOMER_PLAFORM_REGISTER: ExampleStub,
+	TESCO_CUSTOMER_PLAFORM_REGISTER: RegistrationStub,
 }
